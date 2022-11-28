@@ -15,7 +15,7 @@
   become: true
   ansible.builtin.git:
     repo: https://github.com/Babbexx-22/tooling.git.
-    dest: /var/www/html
+    dest: /var/www/
     force: yes
 
 - name: copy html content in /var/www/html/html to /var/www
@@ -34,4 +34,4 @@
   become: true
   ansible.builtin.file:
     path: /var/www/html/html
-    state: absent
+    
