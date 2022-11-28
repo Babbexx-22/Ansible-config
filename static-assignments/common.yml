@@ -1,0 +1,36 @@
+---
+- name: update web, nfs servers
+  hosts: webservers, nfs
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+    - name: ensure wireshark is at the latest version
+      yum:
+        name: wireshark
+        state: latest
+
+    - name: install httpd
+      ansible.builtin.package:
+        name: httpd
+        state: latest
+
+- name: update LB  and DB server
+  hosts: lb, db
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+    - name: Update apt repo
+      apt: 
+        update_cache: yes
+
+    - name: ensure wireshark is at the latest version
+      apt:
+        name: wireshark
+        state: latest
+        
+    - name: install apache2
+      ansible.builtin.package:
+        name: apache2
+        state: latest

@@ -1,0 +1,9 @@
+---
+- host: webservers, nfs, db, lb
+  tasks:
+    - name: uninstall wireshark across all instances
+      ansible.builtin.package
+        name: wireshark
+        state: absent
+- become: yes
+- become_user: root
