@@ -15,14 +15,12 @@
   become: true
   ansible.builtin.git:
     repo: https://github.com/Babbexx-22/tooling.git.
-    dest: /var/www/
+    dest: /var/www/tooling
     force: yes
 
-- name: copy html content in /var/www/html/html to /var/www
+- name: copy html content from /var/www/tooling/html/ to /var/www
   become: true
-  ansible.builtin.copy:
-    src: /var/www/html/html
-    dest: /var/www
+  command: cp -r /var/www/tooling/html/ /var/www/
 
 - name: start httpd if not started
   become: true
