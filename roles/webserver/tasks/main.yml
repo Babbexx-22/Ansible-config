@@ -33,3 +33,4 @@
   ansible.builtin.file:
     path: /var/www/html/html
     state: absent
+# end of playbook
