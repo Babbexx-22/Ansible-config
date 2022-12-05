@@ -4,3 +4,6 @@
 
 [lb]
 172.31.89.179 ansible_ssh_user='ubuntu'
+
+[db]
+172.31.92.198 ansible_ssh_user='ubuntu'

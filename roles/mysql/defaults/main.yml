@@ -106,14 +106,14 @@ mysql_config_include_files: []
 #  - { src: path/relative/to/playbook/anotherfile.cnf, force: yes }
 
 # Databases.
-mysql_databases: []
+mysql_databases:
    - name: tooling
      collation: utf8_general_ci
      encoding: utf8
      replicate: 1
 
 # Users.
-mysql_users: []
+mysql_users:
    - name: webaccess
      host: 0.0.0.0
      password: secret
