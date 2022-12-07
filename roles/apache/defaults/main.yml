@@ -11,7 +11,7 @@ apache_vhosts_template: "vhosts.conf.j2"
 
 # On Debian/Ubuntu, a default virtualhost is included in Apache's configuration.
 # Set this to `true` to remove that default.
-apache_remove_default_vhost: false
+apache_remove_default_vhost: true
 
 apache_global_vhost_settings: |
   DirectoryIndex index.php index.html
@@ -21,7 +21,7 @@ apache_vhosts:
   # 'serveradmin, serveralias, allow_override, options, extra_parameters'.
   - servername: "local.dev"
     documentroot: "/var/www/html"
-    loadbalancer_name: "myapp1"
+    lb_name: "myapp1"
 
 apache_allow_override: "All"
 apache_options: "-Indexes +FollowSymLinks"
@@ -61,10 +61,10 @@ apache_restart_state: restarted
 # if you want to upgrade or switch versions using a new repo.
 apache_packages_state: present
 
-enable_nginx_lb: false
-load_balancer_is_required: false
+enable_apache_lb: true
+load_balancer_is_required: true
 
 # loadbalancer servers
-loadbalancer_name: "myapp1"
+lb_name: "myapp1"
 web1: "172.31.83.5 weight=3"
 web2: "172.31.86.8 weight=3"

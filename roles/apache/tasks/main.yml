@@ -40,6 +40,11 @@
 - name: Configure Apache.
   include_tasks: "configure-{{ ansible_os_family }}.yml"
 
+- name: enable configurations
+  become: true
+  shell: a2enmod rewrite proxy proxy_balancer proxy_http headers lbmethod_bytraffic
+  notify: restart apache
+
 - name: Ensure Apache has selected state and enabled on boot.
   service:
     name: "{{ apache_service }}"
