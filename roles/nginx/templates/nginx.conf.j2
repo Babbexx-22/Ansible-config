@@ -70,6 +70,15 @@ http {
 {% endfor %}
 {% endblock %}
 
+{% block server %}
+    server {
+        listen 80;
+        location / {
+            proxy_pass http://myapp1;
+        }
+    }
+{% endblock %}
+
 {% block http_includes %}
     include {{ nginx_conf_path }}/*.conf;
 {% if nginx_conf_path != nginx_vhost_path %}

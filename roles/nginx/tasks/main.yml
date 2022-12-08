@@ -30,8 +30,21 @@
 # Vhost configuration.
 - import_tasks: vhosts.yml
 
+- name: set webservers host name in /etc/hosts
+  become: yes
+  blockinfile: 
+    path: /etc/hosts
+    block: |
+      {{ item.ip }} {{ item.name }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+  loop:
+    - { name: web1, ip: 172.31.83.5 }
+    - { name: web2, ip: 172.31.86.8 }
+
+
 # Nginx setup.
 - name: Copy nginx configuration in place.
+  become: true
   template:
     src: "{{ nginx_conf_template }}"
     dest: "{{ nginx_conf_file_path }}"
@@ -42,6 +55,7 @@
     - reload nginx
 
 - name: Ensure nginx service is running as configured.
+  become: true
   service:
     name: nginx
     state: "{{ nginx_service_state }}"

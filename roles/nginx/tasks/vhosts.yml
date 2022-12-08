@@ -1,5 +1,6 @@
 ---
 - name: Remove default nginx vhost config file (if configured).
+  become: true
   file:
     path: "{{ nginx_default_vhost_path }}"
     state: absent
@@ -7,6 +8,7 @@
   notify: restart nginx
 
 - name: Ensure nginx_vhost_path exists.
+  become: true
   file:
     path: "{{ nginx_vhost_path }}"
     state: directory
@@ -28,6 +30,7 @@
     - skip_ansible_lint
 
 - name: Remove managed vhost config files.
+  become: true
   file:
     path: "{{ nginx_vhost_path }}/{{ item.filename|default(item.server_name.split(' ')[0] ~ '.conf') }}"
     state: absent
@@ -38,6 +41,7 @@
     - skip_ansible_lint
 
 - name: Remove legacy vhosts.conf file.
+  become: true
   file:
     path: "{{ nginx_vhost_path }}/vhosts.conf"
     state: absent

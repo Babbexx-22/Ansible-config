@@ -1,5 +1,5 @@
-# enable_nginx_lb: true
-# load_balancer_is_required: true
-
-enable_apache2_lb: true
+enable_nginx_lb: true
 load_balancer_is_required: true
+
+# enable_apache2_lb: true
+# load_balancer_is_required: true

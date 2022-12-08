@@ -1,5 +1,6 @@
 ---
 - name: Ensure dirmngr is installed (gnupg dependency).
+  become: true
   apt:
     name: dirmngr
     state: present
