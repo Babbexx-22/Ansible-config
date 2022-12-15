@@ -43,15 +43,8 @@ pipeline {
       }
     }
 
-    stage ('Cleanup') {
+    stage ('Cleanup Workspace') {
       steps {
-        script {
-          sh 'echo "Cleanup stage"'
-        }
-      }
-    }
-    post {
-      always {
         cleanWs()
       }
     }
