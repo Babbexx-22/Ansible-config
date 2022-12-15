@@ -48,10 +48,13 @@ pipeline {
         script {
           sh 'echo "Cleanup stage"'
         }
-        post {
-          always {
-            cleanWs()
-          }
+      }
+    }
+
+    stage ('postbuild cleanup') {
+      post {
+        always {
+          cleanWs()
         }
       }
     }
