@@ -50,14 +50,9 @@ pipeline {
         }
       }
     }
-
-    stage ('postbuild cleanup') {
-      steps {
-        post {
-          always {
-            cleanWs()
-          }
-        }
+    post {
+      always {
+        cleanWs()
       }
     }
     }
