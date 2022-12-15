@@ -48,12 +48,11 @@ pipeline {
         script {
           sh 'echo "Cleanup stage"'
         }
-      }
-    }
-
-    post {
-      always {
-        cleanWs()
+        post {
+          always {
+            cleanWs()
+          }
+        }
       }
     }
     }
