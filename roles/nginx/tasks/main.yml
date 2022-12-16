@@ -13,4 +13,4 @@
      enabled: yes
 
 - name: Deploy static website
-  command: echo "Welcome to Mukhtar's hub" > /var/www/html
+  command: echo "Welcome to Mukhtar's hub" > /var/www/html/index.html
