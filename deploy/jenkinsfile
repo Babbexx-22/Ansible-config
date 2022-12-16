@@ -1,51 +1,43 @@
 pipeline {
-    agent any
+  agent any
 
-  stages {
-    stage('initial cleanup') {
+  environment {
+    ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+  }
+
+  stages{
+
+    stage('initial workspace cleanup') {
       steps {
-        dir("${WORKSPACE}") {
-          deleteDir()
+        dir=("${WORKSPACE}") {
+        deleteDir()
         }
       }
     }
 
-    stage('Build') {
+    stage('SCM checkout') {
       steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
+        git branch: 'main', url: 'https://github.com/Babbexx-22/Ansible-congif.git'
       }
     }
 
-    stage ('Test') {
+    stage ('Update roles_path using sed') {
       steps {
-        script {
-          sh 'echo "Testing stage"'
-        }
+        sh 'echo ${WORKSPACE}' 
+        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg' 
       }
     }
 
-    stage ('Package') {
+    stage ('run ansible playbook against dev') {
       steps {
-        script{
-          sh 'echo "Package stage"'
-        }
+        ansiblePlaybook become: true, colorized: true, credentialsId: 'Private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
       }
     }
 
-    stage ('Deploy') {
+    stage ('clean workspace after build') {
       steps {
-        script {
-          sh 'echo "Deploy stage"'
-        }
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
       }
     }
-
-    stage ('Cleanup Workspace') {
-      steps {
-        cleanWs()
-      }
-    }
-    }
+  }
 }

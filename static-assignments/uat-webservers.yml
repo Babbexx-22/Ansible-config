@@ -2,5 +2,3 @@
 - hosts: uat-webservers
   roles:
     - webserver
- #   - apache
- #  - nginx

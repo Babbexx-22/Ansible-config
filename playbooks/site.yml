@@ -4,10 +4,10 @@
 #   tags:
 #     - always
 
-- name: include env-vars file
-  import_playbook: ../dynamic-assignments/env-vars.yml
-  tags:
-    - always
+# - name: include env-vars file
+#   import_playbook: ../dynamic-assignments/env-vars.yml
+#   tags:
+#     - always
 
 - name: import database file
   import_playbook: ../static-assignments/db.yml
@@ -15,7 +15,6 @@
 # - name: import webservers file
 #   import_playbook: ../static-assignments/uat-webservers.yml
 
-- name: import Loadbalancers assignment
+- name: import nginx assignment
   import_playbook: ../static-assignments/lb.yml
-  when: load_balancer_is_required
 
