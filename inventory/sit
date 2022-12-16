@@ -1,11 +1,11 @@
-[tooling]
-<SIT-Tooling-Web-Server-Private-IP-Address>
+# [tooling]
+# <SIT-Tooling-Web-Server-Private-IP-Address>
 
-[todo]
-<SIT-Todo-Web-Server-Private-IP-Address>
+# [todo]
+# <SIT-Todo-Web-Server-Private-IP-Address>
 
 [nginx]
-<SIT-Nginx-Private-IP-Address>
+172.31.84.90 ansible_ssh_user='ec2-user'
 
 [db]
-<SIT-DB-Server-Private-IP-Address>
+172.31.93.162 ansible_ssh_user='ubuntu'
