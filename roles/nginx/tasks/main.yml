@@ -1,8 +1,5 @@
 ---
 # tasks file for nginx
-
----
-# tasks file for nginx
 - name: install nginx on the webserver
   ansible.builtin.apt:
     name: nginx
