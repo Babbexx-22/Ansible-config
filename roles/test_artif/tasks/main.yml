@@ -1,0 +1,50 @@
+---
+# tasks file for test_artif
+- name: Run apt update before installing prerequisites
+  become: true
+  apt:
+    update_cache: yes
+
+# - name: install gnupg2
+#   become: true
+#   ansible.builtin.package: 
+#     name: gnupg2
+#     state: present
+
+- name: add the repository key to repos list
+  ansible.builtin.get_url:
+    url:  https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo 
+    dest: /home/ubuntu/jfrog-artifactory-rpms.repo
+    mode: '0755'
+
+# - name: Add an Apt signing key to a specific keyring file
+#   ansible.builtin.apt_key:
+#     url: https://api.bintray.com/orgs/jfrog/keys/gpg/public.key 
+#     state: present
+
+# - name: add GPG key
+#   become: true
+#   command: wget -qO - https://api.bintray.com/orgs/jfrog/keys/gpg/public.key | apt-key add -
+
+- name: add jfrog artifactory repository
+  become: true
+  command: echo "deb https://jfrog.bintray.com/artifactory-debs bionic main" | tee /etc/apt/sources.list.d/jfrog.list
+
+- name: Run apt update before installing prerequisites
+  become: true
+  apt:
+    update_cache: yes
+
+- name: install artifactory
+  become: true
+  command: dpkg -i jfrog-artifactory-<pro|oss|cpp-ce>-<version>.deb
+
+
+# - name: install artifactory
+#   ansible.builtin.apt:
+#     name: jfrog-artifactory-oss
+#     state: present
+
+- name: start and enable artifactory
+  become: true
+  service: name=artifactory state=started enabled=yes
