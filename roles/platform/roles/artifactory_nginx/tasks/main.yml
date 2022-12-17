@@ -1,0 +1,34 @@
+- name: Install prerequisite packages
+  include_tasks: "{{ ansible_os_family }}.yml"
+
+- name: Install nginx
+  become: yes
+  package:
+    name: nginx
+    state: present
+  register: install_nginx
+  retries: 5
+  delay: 60
+  until: install_nginx is succeeded
+
+- name: Copy nginx.conf file
+  become: yes
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Generate artifactory.conf
+  become: yes
+  template:
+    src: artifactory.conf.j2
+    dest: /etc/nginx/conf.d/artifactory.conf
+    owner: root
+    group: root
+    mode: '0755'
+  notify: restart nginx
+
+- name: Restart nginx
+  meta: flush_handlers

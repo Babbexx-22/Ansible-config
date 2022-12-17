@@ -1,24 +1,18 @@
-# ---
-# - name: Import common.yml file 
-#   import_playbook: ../static-assignments/common.yml
-#   tags:
-#     - always
+---
+- hosts: artifactory_server
+- name: install artifactory
+  become: true
+  import_playbook: ../static-assignments/artifactory.yml
 
-# - name: include env-vars file
-#   import_playbook: ../dynamic-assignments/env-vars.yml
-#   tags:
-#     - always
-
-- name: import database file
-  import_playbook: ../static-assignments/db.yml
-  tags: 
-    - reject
+# - name: import database file
+#   import_playbook: ../static-assignments/db.yml
+#   tags: 
+#     - reject
 
 # - name: import webservers file
 #   import_playbook: ../static-assignments/uat-webservers.yml
 
-- name: import nginx assignment
-  import_playbook: ../static-assignments/lb.yml
-  tags: 
-    - accept
-
+# - name: import nginx assignment
+#   import_playbook: ../static-assignments/lb.yml
+#   tags: 
+#     - accept

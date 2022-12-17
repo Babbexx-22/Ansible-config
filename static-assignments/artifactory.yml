@@ -1,0 +1,6 @@
+--
+- hosts: artifactory_server
+      collections:
+        - platform
+      roles:
+        - artifactory
