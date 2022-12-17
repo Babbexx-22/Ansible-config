@@ -1,7 +1,5 @@
 ---
 # tasks file for artifactory
----
-# tasks file for artifactory
 
 - name: install java 11
   ansible.builtin.yum:
