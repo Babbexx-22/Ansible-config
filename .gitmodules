@@ -1,3 +1,6 @@
 [submodule "/home/ubuntu/Ansible-congif/roles/Arti-jfrog"]
 	path = /home/ubuntu/Ansible-congif/roles/Arti-jfrog
 	url = https://github.com/Babbexx-22/ARTIFACT-JFROG.git
+[submodule "roles/test_jfrog"]
+	path = roles/test_jfrog
+	url = https://github.com/eugene-krivosheyev/ansible-artifactory-role.git
