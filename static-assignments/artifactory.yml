@@ -1,6 +1,6 @@
 ---
 - hosts: artifactory_server
       collections:
-        - platform
+        - jfrog.platform
       roles:
         - artifactory
