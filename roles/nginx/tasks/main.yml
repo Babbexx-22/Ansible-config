@@ -1,16 +1,23 @@
 ---
 # tasks file for nginx
 - name: install nginx on the webserver
+  become: true
   ansible.builtin.yum:
     name: nginx
     state: present
 
 
 - name: ensure nginx is started and enabled
+  become: true
   ansible.builtin.service:
      name: nginx
      state: started 
      enabled: yes
 
 - name: Deploy static website
-  command: echo "Welcome to Mukhtar's hub" > /var/www/html/index.html
+  become: true
+  command: echo "Welcome to Mukhtar's hub" > /var/www/html/
+
+- name: restart nginx
+  become: true
+  service: name=nginx state=restarted
