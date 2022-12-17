@@ -2,12 +2,12 @@
 # tasks file for artifactory
 
 - name: install java 11
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: java-11-openjdk-devel
     state: present
 
 - name: install java 11
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: 
       - wget
       - unzip
@@ -32,16 +32,16 @@
 - name: Copy the downloaded file to the etc repo
   ansible.builtin.copy:
     src: /home/ubuntu/jfrog-artifactory-rpms.repo
-    dest: /etc/apt.repos.d/jfrog-artifactory-rpms.repo
+    dest: /etc/package.repos.d/jfrog-artifactory-rpms.repo
     remote_src: yes
     follow: yes
 
 - name: update cache
-  ansible.builtin.apt:
+  ansible.builtin.package:
     update_cache: yes
 
 - name: install artifactory
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: jfrog-artifactory-oss
     state: present
 

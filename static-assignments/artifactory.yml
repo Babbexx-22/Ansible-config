@@ -4,7 +4,7 @@
   become: true
   become_user: root
   roles:
-    - Arti-jfrog
+    - artifactory
 
 # ---
 # - hosts: artifactory_server
