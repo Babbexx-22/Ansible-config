@@ -1,14 +1,14 @@
-# ---
-# - hosts: artifactory_server
-#   remote_user: ubuntu
-#   become: true
-#   become_user: root
-#   roles:
-#     - artifactory
-
 ---
 - hosts: artifactory_server
-      collections:
-        - jfrog.platform
-      roles:
-        - artifactory
+  remote_user: ubuntu
+  become: true
+  become_user: root
+  roles:
+    - artifactory
+
+# ---
+# - hosts: artifactory_server
+#       collections:
+#         - jfrog.platform
+#       roles:
+#         - artifactory
