@@ -11,10 +11,14 @@
 
 - name: import database file
   import_playbook: ../static-assignments/db.yml
+  tags: 
+    - reject
 
 # - name: import webservers file
 #   import_playbook: ../static-assignments/uat-webservers.yml
 
 - name: import nginx assignment
   import_playbook: ../static-assignments/lb.yml
+  tags: 
+    - accept
 
