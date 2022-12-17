@@ -1,3 +1,0 @@
-- hosts: xray_servers
-  roles:
-    - xray

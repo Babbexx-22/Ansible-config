@@ -1,3 +1,0 @@
-- hosts: insight_servers
-  roles:
-    - insight

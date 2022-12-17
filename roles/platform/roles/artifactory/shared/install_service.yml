@@ -1,6 +1,0 @@
----
-- name: Create artifactory service
-  become: yes
-  command: "{{ artifactory_home }}/app/bin/installService.sh"
-  args:
-    creates: "{{ artifactory_service_file }}"

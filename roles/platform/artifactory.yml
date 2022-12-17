@@ -1,6 +1,0 @@
-- hosts: artifactory_servers
-  serial:
-    - 1
-    - 100%
-  roles:
-    - artifactory
