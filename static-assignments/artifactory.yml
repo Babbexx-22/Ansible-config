@@ -1,5 +1,7 @@
 ---
 - hosts: artifactory_server
-  become: yes
+  remote_user: ubuntu
+  become: true
+  become_user: root
   roles:
     - artifactory
