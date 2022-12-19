@@ -2,7 +2,7 @@
 # tasks file for test_artif
 - name: Run apt update before installing prerequisites
   become: true
-  apt:
+  yum:
     update_cache: yes
 
 - name: add the repository key to repos list
