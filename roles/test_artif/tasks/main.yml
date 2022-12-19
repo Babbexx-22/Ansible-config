@@ -12,8 +12,8 @@
     mode: '0755'
 
 - name: install artifactory
-  become: true
-  command: sudo yum install ./artifactory-pro.rpm -y
+  become: yes
+  command: yum install ./artifactory-pro.rpm -y
 
 - name: start and enable artifactory
   become: true
