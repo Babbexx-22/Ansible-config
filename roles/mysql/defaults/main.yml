@@ -106,18 +106,30 @@ mysql_config_include_files: []
 #  - { src: path/relative/to/playbook/anotherfile.cnf, force: yes }
 
 # Databases.
+# mysql_databases:
+#    - name: tooling
+#      collation: utf8_general_ci
+#      encoding: utf8
+#      replicate: 1
+
 mysql_databases:
-   - name: tooling
+   - name: homestead
      collation: utf8_general_ci
      encoding: utf8
      replicate: 1
 
-# Users.
+# # Users.
+# mysql_users:
+#    - name: webaccess
+#      host: 0.0.0.0
+#      password: secret
+#      priv: '*.*:ALL,GRANT' # https://docs.ansible.com/ansible/latest/collections/community/mysql/mysql_user_module.html
+
 mysql_users:
-   - name: webaccess
+   - name: homestead
      host: 0.0.0.0
-     password: secret
-     priv: '*.*:ALL,GRANT' # https://docs.ansible.com/ansible/latest/collections/community/mysql/mysql_user_module.html
+     password: sePret^i
+     priv: '*.*:ALL,GRANT'
 
 mysql_disable_log_bin: false
 
