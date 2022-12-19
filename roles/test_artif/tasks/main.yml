@@ -13,7 +13,10 @@
 
 - name: install artifactory
   become: yes
-  command: yum install ./artifactory-pro.rpm -y
+  ansible.builtin.yum:
+    name: artifactory-pro.rpm
+    state: present
+  # command: yum install ./artifactory-pro.rpm -y
 
 - name: start and enable artifactory
   become: true
