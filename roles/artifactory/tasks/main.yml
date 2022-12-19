@@ -32,7 +32,7 @@
 - name: Copy the downloaded file to the etc repo
   ansible.builtin.copy:
     src: /home/ec2-user/jfrog-artifactory-rpms.repo
-    dest: /etc/package.repos.d/jfrog-artifactory-rpms.repo
+    dest: /etc/yum.repos.d/jfrog-artifactory-rpms.repo
     remote_src: yes
     follow: yes
 
