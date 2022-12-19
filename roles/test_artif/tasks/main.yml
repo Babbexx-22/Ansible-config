@@ -24,17 +24,16 @@
   ansible.builtin.package:
     update_cache: yes
 
-- name: install artifactory
-  ansible.builtin.package:
-    name: jfrog-artifactory-oss
-    state: present
-
-
 # - name: install artifactory
-#   become: yes
-#   ansible.builtin.yum:
-#     name: artifactory-pro.rpm
+#   ansible.builtin.package:
+#     name: jfrog-artifactory-oss
 #     state: present
+
+- name: install artifactory
+  become: yes
+  ansible.builtin.yum:
+    name: artifactory-pro.rpm
+    state: present
   # command: yum install ./artifactory-pro.rpm -y
 
 - name: start and enable artifactory
