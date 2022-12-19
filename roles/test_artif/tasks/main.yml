@@ -9,13 +9,32 @@
   ansible.builtin.get_url:
     url: "https://releases.jfrog.io/artifactory/artifactory-pro-rpms/jfrog-artifactory-pro/jfrog-artifactory-pro-[RELEASE].rpm"
     dest: /home/ec2-user/jfrog-artifactory-pro-rpms.repo
+    remote_src: yes
+    follow: yes
     mode: '0755'
 
+# - name: Copy the downloaded file to the etc repo
+#   ansible.builtin.copy:
+#     src: /home/ubuntu/jfrog-artifactory-rpms.repo
+#     dest: /etc/package.repos.d/jfrog-artifactory-rpms.repo
+#     remote_src: yes
+#     follow: yes
+
+- name: update cache
+  ansible.builtin.package:
+    update_cache: yes
+
 - name: install artifactory
-  become: yes
-  ansible.builtin.yum:
-    name: artifactory-pro.rpm
+  ansible.builtin.package:
+    name: jfrog-artifactory-oss
     state: present
+
+
+# - name: install artifactory
+#   become: yes
+#   ansible.builtin.yum:
+#     name: artifactory-pro.rpm
+#     state: present
   # command: yum install ./artifactory-pro.rpm -y
 
 - name: start and enable artifactory
