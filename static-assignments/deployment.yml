@@ -3,6 +3,7 @@
   become: yes
   tasks:
     - name: add epel and remi repository
+      become: yes
       ansible.builtin.yum:
         name:
           - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
