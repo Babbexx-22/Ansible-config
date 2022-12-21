@@ -4,16 +4,19 @@
 #   become: true
 #   import_playbook: ../static-assignments/artifactory.yml
 
-- name: import database file
-  import_playbook: ../static-assignments/db.yml
-  tags: 
-    - reject
+# - name: import database file
+#   import_playbook: ../static-assignments/db.yml
+#   tags: 
+#     - reject
+
+- name: deploy to-do application
+  import_playbook: ../static-assignments/deployment.yml
 
 # - name: import webservers file
 #   import_playbook: ../static-assignments/uat-webservers.yml
 
 # - name: import nginx assignment
-#   import_playbook: ../static-assignments/lb.yml
+#   import_playbook: ../static-assignments/nginx.yml
 #   tags: 
 #     - accept
 
