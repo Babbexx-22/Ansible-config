@@ -2,12 +2,11 @@
 - hosts: todo
   become: yes
   tasks:
-    - name: add dnf utils,epel and remi repository
+    - name: add epel and remi repository
       ansible.builtin.yum:
         name:
           - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
           - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-          - dnf-utils
         disable_gpg_check: yes
 
     - name: install httpd on the web server
@@ -24,7 +23,7 @@
     - name: enable PHP 7.4 Remi module and install PHP 7.4 
       ansible.builtin.yum:
         name: 
-          - php:remi-7.4
+          - php
           - php 
           - php-mysqlnd
           - php-gd 
@@ -37,7 +36,7 @@
           - php-xml
           - php-fpm
           - php-json
-        # enablerepo: php:remi-7.4
+        enablerepo: php:remi-7.4
         state: present
     
     - name: ensure php-fpm is started and enabled
