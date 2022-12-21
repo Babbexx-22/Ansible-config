@@ -12,9 +12,9 @@
         name: software-properties-common
         state: present
 
-    - name: Add Ondrej PHP PPA repository
-      become: true
-      command: sudo add-apt-repository ppa:ondrej/php
+    # - name: Add Ondrej PHP PPA repository
+    #   become: true
+    #   command: sudo add-apt-repository ppa:ondrej/php
 
     - name: update packages
       ansible.builtin.apt:
