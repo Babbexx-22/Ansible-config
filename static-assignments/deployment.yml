@@ -75,7 +75,7 @@
 
     - name: deploy the code to apache web root directory
       ansible.builtin.copy:
-        src: /home/ubuntu/php-todo
+        src: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
         dest: /var/www/html
         force: yes
         remote_src: yes
