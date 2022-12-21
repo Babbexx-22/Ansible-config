@@ -62,7 +62,7 @@
 
     - name: download the php-todo artifact
       get_url:
-        url: http://3.238.253.40:8082/artifactory/Proj-14/php-todo
+        url: http://3.236.78.66:8082:8082/artifactory/Proj-14/php-todo
         dest: /home/ubuntu
         url_username: admin
         url_password: APABGzk2xjsDanG4mbxN3ZffMRS
