@@ -64,6 +64,7 @@
           - php-opcache
           - php-intl
           - php-xml
+          - php7.4-fpm
           - php-json
         # enablerepo: php:remi-7.4
         state: present
