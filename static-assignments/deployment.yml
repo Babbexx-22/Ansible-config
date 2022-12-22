@@ -110,7 +110,7 @@
 
     - name: remove apache default page
       ansible.builtin.file:
-        path: /etc/apache2/httpd.conf/welcome.conf
+        path: /etc/apache2/sites-available/000-default.conf
         state: absent
 
     - name: restart httpd
