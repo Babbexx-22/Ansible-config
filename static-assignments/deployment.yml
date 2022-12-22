@@ -52,16 +52,6 @@
           - libapache2-mod-fcgid
         state: present
 
-    - name: enable php-fpm
-      become: true
-      command: a2enmod proxy_fcgi setenvif && a2enconf php7.4-fpm
-
-    
-    - name: restart httpd
-      ansible.builtin.service:
-        name: apache2
-        state: restarted
-
     - name: enable PHP 7.4 dependencies
       ansible.builtin.apt:
         name:
@@ -77,6 +67,18 @@
           - php-json
         # enablerepo: php:remi-7.4
         state: present
+
+    - name: enable php-fpm
+      become: true
+      command: a2enmod proxy_fcgi setenvif && a2enconf php7.4-fpm
+
+    
+    - name: restart httpd
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+
+    
     
     # - name: ensure php-fpm is started and enabled
     #   ansible.builtin.service:
