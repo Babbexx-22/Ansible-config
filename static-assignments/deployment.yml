@@ -36,7 +36,7 @@
     - name: install php 7.4
       ansible.builtin.apt:
         name: 
-          - php-7.4
+          - php7.4
           - libapache2-mod-php7.4
         state: present
 
