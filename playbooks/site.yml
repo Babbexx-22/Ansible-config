@@ -10,7 +10,7 @@
 #     - reject
 
 - name: deploy to-do application
-  import_playbook: ../static-assignments/deployment.yml
+  import_playbook: ../static-assignments/mydeployment.yml
 
 # - name: import webservers file
 #   import_playbook: ../static-assignments/uat-webservers.yml
