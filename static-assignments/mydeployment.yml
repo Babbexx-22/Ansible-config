@@ -1,0 +1,137 @@
+---
+- hosts: todo
+  become: yes
+  tasks:
+
+    - name: update packages
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: install apache2 on the web server
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+
+    - name: ensure httpd is started and enabled
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: yes
+    
+    - name: install software-properties-common
+      ansible.builtin.apt:
+        name: 
+          - software-properties-common
+          - apt-transport-https
+        state: present
+
+    # - name: Add Ondrej PHP PPA repository
+    #   become: true
+    #   command: sudo add-apt-repository ppa:ondrej/php
+
+    # - name: update packages
+    #   ansible.builtin.apt:
+    #     update_cache: yes
+
+    - name: install php 7.4
+      ansible.builtin.apt:
+        name: 
+          - php7.4
+          - libapache2-mod-php7.4
+        state: present
+
+    - name: restart httpd
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+  
+    - name: install PHP-FPM
+      ansible.builtin.apt:
+        name:
+          - php7.4-fpm
+          - libapache2-mod-fcgid
+        state: present
+
+    # - name: enable php-fpm
+    #   become: true
+    #   command: a2enmod php7.4-fpm && a2enmod proxy_fcgi setenvif && a2enconf php7.4-fpm
+       
+
+    - name: enable PHP 7.4 dependencies
+      ansible.builtin.apt:
+        name:
+          - php-mysqlnd
+          - php-gd 
+          - php-curl
+          - unzip
+          - php-common
+          - php-mbstring
+          - php-opcache
+          - php-intl
+          - php-xml
+          - php7.4-fpm
+          - php-json
+        # enablerepo: php:remi-7.4
+        state: present
+
+    
+    - name: restart httpd
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+
+    
+    
+    # - name: ensure php-fpm is started and enabled
+    #   ansible.builtin.service:
+    #     name: php-fpm
+    #     state: started 
+    #     enabled: yes
+
+    - name: download the php-todo artifact
+      get_url:
+        url: http://3.236.78.66:8082/artifactory/Proj-14/php-todo
+        dest: /home/ubuntu/
+        url_username: admin
+        url_password: APABGzk2xjsDanG4mbxN3ZffMRS
+
+    - name: unzip the downloaded artifact
+      ansible.builtin.unarchive:
+       src: /home/ubuntu/php-todo
+       dest: /home/ubuntu/
+       remote_src: yes
+
+    - name: deploy the code to apache web root directory
+      ansible.builtin.copy:
+        src: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        dest: /var/www/html/
+        force: yes
+        remote_src: yes
+
+    - name: remove apache default page
+      ansible.builtin.file:
+        path: /etc/apache2/sites-available/000-default.conf
+        state: absent
+
+    - name: restart httpd
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+
+
+    # - name: install remi and rhel repo
+    #   ansible.builtin.yum:
+    #     name: 
+    #       - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    #       - dnf-utils
+    #       - http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    #     disable_gpg_check: yes
+
+    # - name: add epel and remi repository
+    #   become: yes
+    #   ansible.builtin.yum:
+    #     name:
+    #       - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    #       - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    #     disable_gpg_check: yes
+
