@@ -89,8 +89,9 @@
     #     enabled: yes
 
     - name: download the php-todo artifact
+      become: true
       get_url:
-        url: http://18.205.67.213:8082//artifactory/Proj-14/php-todo
+        url: http://18.205.67.213:8082/artifactory/Proj-14/php-todo
         dest: /home/ubuntu/
         url_username: admin
         url_password: APABGzk2xjsDanG4mbxN3ZffMRS
